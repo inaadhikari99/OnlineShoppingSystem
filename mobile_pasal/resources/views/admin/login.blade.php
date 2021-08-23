@@ -27,7 +27,7 @@
                     <div class="login-content">
                         <div class="login-logo">
                             <a href="#">
-                               <img src="{{asset('admin_assets/images/icon/logo.png')}}" alt="CoolAdmin">
+                            {{Config::get('constants.site_name')}}
                             </a>
                         </div>
                         <div class="login-form">
@@ -41,10 +41,6 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input class="au-input au-input--full" type="password" name="password" placeholder="Password" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Password2</label>
                                     <input class="au-input au-input--full" type="password" name="password" placeholder="Password" required>
                                 </div>
                                 
@@ -67,11 +63,7 @@
     <script src="{{asset('admin_assets/vendor/bootstrap-4.1/bootstrap.min.js')}}"></script>
     
     <script src="{{asset('admin_assets/vendor/wow/wow.min.js')}}"></script>
-     <script src="{{asset('admin_assets/js/main.js')}}"></script>
-   
-    </script>
-
-    
+     <script src="{{asset('admin_assets/js/main.js')}}"></script>    
    
 
 </body>
