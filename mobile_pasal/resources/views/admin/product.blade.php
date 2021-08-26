@@ -1,11 +1,11 @@
 @extends('admin/layout')
-@section('page_title','Category') 
-@section('category_select','active')
+@section('page_title','Product') 
+@section('product_select','active')
 @section('container')
 {{session('message')}}
-<h1 class="mb10" >Category</h1>
-<a href="{{url('admin/category/manage_category')}}">
-<button type="button" class="btn btn-success">Add Category</button>
+<h1 class="mb10" >Product</h1>
+<a href="{{url('admin/product/manage_product')}}">
+<button type="button" class="btn btn-success">Add Product</button>
 </a>
 <div class="row m-t-30">
                             <div class="col-md-12">
@@ -15,8 +15,9 @@
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Category Name</th>
-                                                <th>Category Slug</th>
+                                                <th> Name</th>
+                                                <th>Slug</th>
+                                                <th>Image</th>
                                                 <th>Action</th>
                                                
                                             </tr>
@@ -25,19 +26,20 @@
                                             @foreach($data as $list)
                                          <tr>
                                              <td>{{$list->id}}</td>
-                                             <td>{{$list->category_name}}</td>
-                                             <td>{{$list->category_slug}}</td>   
+                                             <td>{{$list->name}}</td>
+                                             <td>{{$list->slug}}</td> 
+                                             <td><img width="100px" src="{{asset('storage/media/'.$list->image)}}"/></td>   
                                              <td>
                                                 
-                                                <a href="{{url('admin/category/manage_category/')}}/{{($list->id)}}"><button type="button" class="btn btn-success">Edit</button></a>
-                                                <a href="{{url('admin/category/delete/')}}/{{($list->id)}}"><button type="button" class="btn btn-danger">Delete</button></a>                                 
+                                                <a href="{{url('admin/product/manage_product/')}}/{{($list->id)}}"><button type="button" class="btn btn-success">Edit</button></a>
+                                                <a href="{{url('admin/product/delete/')}}/{{($list->id)}}"><button type="button" class="btn btn-danger">Delete</button></a>                                 
                                                @if($list->status==1)
 
                                               
                                                 
-                                                <a href="{{url('admin/category/status/0')}}/{{($list->id)}}"><button type="button" class="btn btn-info">Active</button></a>
+                                                <a href="{{url('admin/product/status/0')}}/{{($list->id)}}"><button type="button" class="btn btn-info">Active</button></a>
                                                 @elseif($list->status==0)
-                                                <a href="{{url('admin/category/status/1')}}/{{($list->id)}}"><button type="button" class="btn btn-warning">Deactive</button></a>
+                                                <a href="{{url('admin/product/status/1')}}/{{($list->id)}}"><button type="button" class="btn btn-warning">Deactive</button></a>
                                                 @endif
                                                               
                                                 

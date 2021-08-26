@@ -33,13 +33,13 @@ class AdminController extends Controller
         $result= Admin::where(['email'=>$email])->first();
         
         if($result){
-            if(Hash::check($request->post('password'),$result->password)){
+            if(Hash::check($request->post('password'),$result->password)){//to see if it matches
                 $request->session()->put('ADMIN_LOGIN',true);
                  $request->session()->put('ADMIN_ID',$result->id);
                     return redirect('admin/dashboard');
                 }
               else{
-              $request->session()->flash('error','please enter corrct password');
+              $request->session()->flash('error','please enter correct password');
              return redirect('admin');  
                 }
             
@@ -56,12 +56,12 @@ class AdminController extends Controller
     }
 
 
-    public function updatepassword()
-    {
-      $r=Admin::find(2);
-      $r->password=Hash::make('aakash');
-      $r->save();
-    }
+    // public function updatepassword()
+    // {
+    //   $r=Admin::find(1);
+    //   $r->password=Hash::make('ina');
+    //   $r->save();
+    // }
 
 
 }
