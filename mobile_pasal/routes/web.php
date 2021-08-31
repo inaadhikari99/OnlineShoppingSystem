@@ -1,12 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CouponController;
-use App\Http\Controllers\SizeController;
-use App\Http\Controllers\ColorController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CouponController;
+use App\Http\Controllers\Admin\SizeController;
+use App\Http\Controllers\Admin\ColorController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Front\FrontController;
+use App\Http\Controllers\Admin\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +21,10 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/',[FrontController::class,'index']);
+
+
 // route to go conroller and its function
 Route::get('admin',[AdminController::class,'index']);
 
@@ -84,6 +87,20 @@ Route::post('admin/product/manage_product_process',[ProductController::class,'ma
 
 Route::get('admin/product/delete/{id}',[ProductController::class,'delete']);
 Route::get('admin/product/status/{status}/{id}',[ProductController::class,'status']);
+
+Route::get('admin/product/product_attr_delete/{paid}/{pid}',[ProductController::class,'product_attr_delete']);
+Route::get('admin/product/product_images_delete/{paid}/{pid}',[ProductController::class,'product_images_delete']);
+
+//for customer
+Route::get('admin/customer',[CustomerController::class,'index']);
+
+
+Route::get('admin/customer/show/{id}',[CustomerController::class,'show']);
+Route::get('admin/customer/status/{status}/{id}',[CustomerController::class,'status']);
+
+
+
+
 
 
 Route::get('admin/logout', function () {
