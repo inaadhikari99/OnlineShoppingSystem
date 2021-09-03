@@ -23,7 +23,7 @@
                            </div>
                            <div class="col-md-4">
                               <label for="category_name" class="control-label mb-1">Parent Category</label>
-                              <select id="parent_category_id"  name="parent_category_id"  type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                              <select id="parent_category_id"  name="parent_category_id"  type="text" class="form-control" aria-required="true" aria-invalid="false" >
                            >
                            <option value=""> Select Categories  </option>
                            @foreach   ($category as $list)

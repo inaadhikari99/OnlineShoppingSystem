@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\BannerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,12 @@ use App\Http\Controllers\Admin\CustomerController;
 
 
 Route::get('/',[FrontController::class,'index']);
+
+Route::get('product/{id}',[FrontController::class,'product']);
+Route::post('add_to_cart',[FrontController::class,'add_to_cart']);
+Route::get('cart',[FrontController::class,'cart']);
+
+
 
 
 // route to go conroller and its function
@@ -97,6 +104,17 @@ Route::get('admin/customer',[CustomerController::class,'index']);
 
 Route::get('admin/customer/show/{id}',[CustomerController::class,'show']);
 Route::get('admin/customer/status/{status}/{id}',[CustomerController::class,'status']);
+
+
+
+//for banner
+Route::get('admin/banner',[BannerController::class,'index']);
+Route::get('admin/banner/manage_banner',[BannerController::class,'manage_banner']);
+Route::get('admin/banner/manage_banner/{id}',[BannerController::class,'manage_banner']);
+Route::post('admin/banner/manage_banner_process',[BannerController::class,'manage_banner_process'])->name('banner.manage_banner_process');
+
+Route::get('admin/banner/delete/{id}',[BannerController::class,'delete']);
+Route::get('admin/banner/status/{status}/{id}',[BannerController::class,'status']);
 
 
 

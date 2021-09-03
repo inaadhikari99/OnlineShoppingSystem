@@ -1,61 +1,7 @@
 @extends('front/layout')
+@section('page_title','Home Page')
 @section('container')
-<!-- Start slider -->
-<section id="aa-slider">
-    <div class="aa-slider-area">
-      <div id="sequence" class="seq">
-        <div class="seq-screen">
-          <ul class="seq-canvas">
-            <!-- single slide item -->
-            <li>
-              <div class="seq-model">
-                <img data-seq src="{{asset('front_assets/img/slider/1.jpg')}}" alt="Men slide img" />
-              </div>
-              <div class="seq-title">
-               <span data-seq>Save Up to 75% Off</span>                
-                <h2 data-seq>Men Collection</h2>                
-                <p data-seq>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, illum.</p>
-                <a data-seq href="#" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
-              </div>
-            </li>
-            <!-- single slide item -->
-            <li>
-              <div class="seq-model">
-                <img data-seq src="{{asset('front_assets/img/slider/2.jpg')}}" alt="Wristwatch slide img" />
-              </div>
-              <div class="seq-title">
-                <span data-seq>Save Up to 40% Off</span>                
-                <h2 data-seq>Wristwatch Collection</h2>                
-                <p data-seq>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, illum.</p>
-                <a data-seq href="#" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
-              </div>
-            </li>
-            <!-- single slide item -->
-            <li>
-              <div class="seq-model">
-                <img data-seq src="{{asset('front_assets/img/slider/3.jpg')}}" alt="Women Jeans slide img" />
-              </div>
-              <div class="seq-title">
-                <span data-seq>Save Up to 75% Off</span>                
-                <h2 data-seq>Jeans Collection</h2>                
-                <p data-seq>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, illum.</p>
-                <a data-seq href="#" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
-              </div>
-            </li>
-            <!-- single slide item -->           
-          
-            <!-- single slide item -->  
-                           
-          </ul>
-        </div>
-        <!-- slider navigation btn -->
-        <fieldset class="seq-nav" aria-controls="sequence" aria-label="Slider buttons">
-          <a type="button" class="seq-prev" aria-label="Previous"><span class="fa fa-angle-left"></span></a>
-          <a type="button" class="seq-next" aria-label="Next"><span class="fa fa-angle-right"></span></a>
-        </fieldset>
-      </div>
-    </div>
-  </section>
+
   <!-- / slider -->
   <!-- Start Promo section -->
   <section id="aa-promo">
@@ -87,7 +33,35 @@
       </div>
   
   </section>
+
   <!-- / Promo section -->
+  <!-- Start slider -->
+<section id="aa-slider">
+    <div class="aa-slider-area">
+      <div id="sequence" class="seq">
+        <div class="seq-screen">
+          <ul class="seq-canvas">
+            <!-- single slide item -->
+            @foreach($banner as $list)
+            <li>
+              <div class="seq-model">
+                <img data-seq src="{{asset('storage/media/banner/'.$list->image)}}" />
+              </div>
+              <div class="seq-title">
+              <a data-seq href="{{$list->btn_link}}" class="aa-shop-now-btn aa-secondary-btn">{{$list->btn_txt}}</a>
+              </div>
+            </li>
+              @endforeach             
+          </ul>
+        </div>
+        <!-- slider navigation btn -->
+        <fieldset class="seq-nav" aria-controls="sequence" aria-label="Slider buttons">
+          <a type="button" class="seq-prev" aria-label="Previous"><span class="fa fa-angle-left"></span></a>
+          <a type="button" class="seq-next" aria-label="Next"><span class="fa fa-angle-right"></span></a>
+        </fieldset>
+      </div>
+    </div>
+  </section>
   <!-- Products section -->
   <section id="aa-product">
     <div class="container">
@@ -123,7 +97,7 @@
                         <li>
                           <figure>
                             <a class="aa-product-img" href="{{url('product/'.$productArr->slug)}}"><img src="{{asset('storage/media/'.$productArr->image)}}" alt="{{$productArr->name}}"></a>
-                            <a class="aa-add-card-btn"href="{{url('product/'.$productArr->slug)}}"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                            <a class="aa-add-card-btn" href="javascript:void(0)" onclick="home_add_to_cart('{{$productArr->id}}','{{$home_product_attr[$productArr->id][0]->size}}','{{$home_product_attr[$productArr->id][0]->color}}')"><span class="fa fa-shopping-cart" ></span>Add To Cart</a>
                             <figcaption>
                               <h4 class="aa-product-title"><a href="{{url('product/'.$productArr->slug)}}">{{$productArr->name}}</a></h4>
                               <span class="aa-product-price">Rs{{$home_product_attr[$productArr->id][0]->price}}</span><span class="aa-product-price"><del>Rs{{$home_product_attr[$productArr->id][0]->mrp}}</del></span>
@@ -343,5 +317,68 @@
     </div>
   </section>
   <!-- / Client Brand -->
+  <input type="hidden" id="qty" value="1"/>
+  <form id="formAddToCart"> 
+  <input type="hidden"name="size_id" id="size_id"/>
+  <input type="hidden"name="color_id" id="color_id"/>
+   <input type="hidden"name="pqty" id="pqty"/>
+  <input type="hidden"name="product_id" id="product_id"/>
+   @csrf
+</form>
+
+<script>
+function home_add_to_cart(id,size_str_id,color_str_id){
+      jQuery('#color_id').val(color_str_id);
+      jQuery('#size_id').val(size_str_id);
+      add_to_cart(id,size_str_id,color_str_id);
+    }  
+  </script>
+  <script>
+function change_color_image(img,color){
+  jQuery('#color_id').val(color);
+  jQuery('.simpleLens-big-image-container').html('<a data-lens-image="'+img+'" class="simpleLens-lens-image"><img src="'+img+'"></a>');
+}
+
+</script>
+
+<script>
+function showColor(size){
+ jQuery('#size_id').val(size); 
+jQuery('.product_color').hide();
+jQuery('.size_'+size).show();
+jQuery('.size_link').css('border','0px');
+jQuery('#size_'+size).css('border','1px solid black');
+}
+</script>
+
+<script>
+function add_to_cart(id,size_str_id,color_str_id){
+  jQuery('#cart_msg').html('');
+ var color_id= jQuery('#color_id').val();
+  var size_id=jQuery('#size_id').val(); 
+  
+  
+  if(size_str_id==0 && color_str_id==0){
+    size_id='N/A';
+    color_id='N/A';
+  }
+  if(size_id=='' &&  size_id!='N/A'){
+jQuery('#cart_msg').html('<h2>Please select size</h2>');
+  }else if(color_id==''  &&  color_id!='N/A'){
+    jQuery('#cart_msg').html('<h2>Please select color</h2>');
+  }else{
+    jQuery('#product_id').val(id);
+    jQuery('#pqty').val(jQuery('#qty').val());
+jQuery.ajax({
+url:'http://localhost:8081/Laravel/ecom/mobile_pasal/public/add_to_cart',
+data:jQuery('#formAddToCart').serialize(),
+type:'post',
+success:function(result){
+ alert('Product' + result.msg)
+}
+});
+  }
+}
+</script>
 
 @endsection 

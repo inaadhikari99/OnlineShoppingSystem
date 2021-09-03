@@ -206,7 +206,7 @@ $rand=rand('111111111','999999999');
   $request->file("image1.$key")->storeAs('/public/media',$image_name);
   $productAttArr['image1']=$image_name;
   } 
- 
+  
 if($paidarr[$key]!=''){
   DB::table('product_attributes')->where(['id'=>$paidarr[$key]])->update($productAttrArr);
  }else{
@@ -224,7 +224,7 @@ foreach($piidarr as $key=>$val ){
   if($request->hasFile("images.$key")){
  
     $images=$request->file("images.$key");
-    $rand=rand('111111111','999999999');
+    $rand=rand('1111111111','9999999999');
       $ext=$images->extension();
       $image_name=$rand.'.'.$ext;
       $request->file("images.$key")->storeAs('/public/media',$image_name);

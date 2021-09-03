@@ -62,10 +62,15 @@
                         <a href="{{url('admin/product')}}">
                         <i class="fas fa-fill"></i>product</a>
                      </li>
-                     li>
+                      <li>
                         <a href="{{url('admin/customer')}}">
                         <i class="fas fa-fill"></i>Customer</a>
                      </li>
+                     <li>
+                        <a href="{{url('admin/banner')}}">
+                        <i class="fas fa-banner"></i>Banner</a>
+                     </li>
+
                   </ul>
                </div>
             </nav>
@@ -107,6 +112,10 @@
                      <li class="@yield('customer_select')">
                         <a href="{{url('admin/customer')}}">
                         <i class="fas fa-user"></i>Customer</a>
+                     </li>
+                     <li class="@yield('banner_select')">
+                        <a href="{{url('admin/banner')}}">
+                        <i class="fas fa-images"></i>Banner</a>
                      </li>
                   </ul>
                </nav>

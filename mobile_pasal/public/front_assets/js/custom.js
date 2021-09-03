@@ -353,7 +353,67 @@ jQuery(function($){
         // settings: "unslick"
         // instead of a settings object
       ]
-    }); 
+    });
+  });
+
+
+    // function change_color_image(img,color){
+    //   jQuery('#color_id').val(color);
+    //   jQuery('.simpleLens-big-image-container').html('<a data-lens-image="'+img+'" class="simpleLens-lens-image"><img src="'+img+'"></a>');
+    // }
     
-});
+    
+    
+    
+    // function showColor(size){
+    //  jQuery('#size_id').val(size); 
+    // jQuery('.product_color').hide();
+    // jQuery('.size_'+size).show();
+    // jQuery('.size_link').css('border','0px');
+    // jQuery('#size_'+size).css('border','1px solid black');
+    // }
+    
+  
+    // function home_add_to_cart(id,size_str_id,color_str_id){
+    //   jQuery('#color_id').val(color_str_id);
+    //   jQuery('#size_id').val(size_str_id);
+    //   add_to_cart(id,size_str_id,color_str_id);
+    // }
+
+    // function add_to_cart(id,size_str_id,color_str_id){
+    //   jQuery('#cart_msg').html('');
+    //  var color_id= jQuery('#color_id').val();
+    //   var size_id=jQuery('#size_id').val(); 
+      
+      
+    //   if(size_str_id==0 && color_str_id==0){
+    //     size_id='N/A';
+    //     color_id='N/A';
+    //   }
+    //   if(size_id=='' &&  size_id!='N/A'){
+    // jQuery('#cart_msg').html('<h2>Please select size</h2>');
+    //   }else if(color_id==''  &&  color_id!='N/A'){
+    //     jQuery('#cart_msg').html('<h2>Please select color</h2>');
+    //   }else{
+    //     jQuery('#product_id').val(id);
+    //     jQuery('#pqty').val(jQuery('#qty').val());
+    // jQuery.ajax({
+    // url:'http://localhost:8081/Laravel/ecom/mobile_pasal/public/add_to_cart',
+    // data:jQuery('#formAddToCart').serialize(),
+    // type:'post',
+    // success:function(result){
+    //  alert('Product' + result.msg)
+    // }
+    // });
+    //   }
+    // } 
+
+    
+  
+    
+
+
+   
+  
+
 
